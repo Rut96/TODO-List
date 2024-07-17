@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="style.css">
+    <script defer src="main.js"></script>
+</head>
+<body onload="loadTasks()">
+    <div class="wrapper">
+        <header> <h1><span class="white">Start</span> Planning Today</h1></header>
+        <main class="container">
+            <div class="input-area">
+                <input type="text" id="titleBox" placeholder="Title">
+                <textarea type="text" id="newTaskBox" placeholder="Task"></textarea>
+                <button onclick="addTask()">Add</button>
+                <button onclick="clearAll()">Clear</button>
+            </div>
+            <div id="tasks-area">
+                <div class="date-time">
+                    <div class="mini-calender-area">
+                        <input type="date" class="date-input" id="miniDate" style="display: none;">
+                    </div>
+                    <div id="calendar">
+                        <div id="calendar-header">
+                            <div id="month"></div>
+                            <div class="btns">
+                                <div class="btn today" onclick="doToday()">
+                                    <i class="fa fa-calendar-day"></i>
+                                </div>
+                                <div class="btn prev-btn" onclick="previous()">
+                                    <i class="fa fa-chevron-left"></i>
+                                </div>
+                                <div class="btn next-btn">
+                                    <i class="fa fa-chevron-right" onclick="next()"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="weekdays">
+                            <div class="weekday">Mun</div>
+                            <div class="weekday">Tue</div>
+                            <div class="weekday">Sun</div>
+                            <div class="weekday">Wed</div>
+                            <div class="weekday">Thu</div>
+                            <div class="weekday">Fri</div>
+                            <div class="weekday">Sat</div>
+                        </div>
+                        <div id="days"></div>
+                    </div>
+                    <div class="time-area">
+                         <input type="time" id="timePicker">
+                          <div class="clear-time" onclick="clearTime()"><p>X</p></div>
+                    </div>
+                </div>
+                <div class="tasks" id="tasksContainer" ></div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>
