@@ -104,11 +104,12 @@ function chooseDate(chosenDay, chosenMonth) {
     }
 
     chosenDate = `${currYear}-${chosenMonth < 10 ? "0" + chosenMonth : chosenMonth}-${chosenDay < 10 ? "0" + chosenDay : chosenDay}`;    
+
 }
 
 renderCalendar();
 
-// ================================== TIME ==================================
+// ================================== CLEAR ==================================
 
 const timePicker = document.getElementById("timePicker");
 const miniDate = document.getElementById("miniDate");
@@ -119,6 +120,17 @@ function clearTime() {
 
 function clearMiniDate() {
     miniDate.value = "";
+}
+
+function clearSelectedDay() {
+    if (selectedDay) {
+        const prevSelectedDay = document.getElementById(`day-${selectedDay.day}`);
+        if (prevSelectedDay) {
+            prevSelectedDay.classList.remove("chosen-day");
+        }
+        selectedDay = null;
+        chosenDate = null;
+    }
 }
 
 // ================================== TASKS ==================================
@@ -150,6 +162,8 @@ function clearAll() {
     newTaskBox.value = "";
     clearTime();
     clearMiniDate();
+    clearSelectedDay();
+    renderCalendar();
 }
 
 function addTask() {
@@ -179,8 +193,10 @@ function drawTask(tasksArr) {
     
     for(let i = 0; i < tasksArr.length; i++) {
         let isDone = tasksArr[i].isDone;
+        let isEditing = tasksArr[i].isEdit;
+
         html += `
-            <div class="task-box isDone-${isDone}" id="taskId-${i}">
+            <div class="task-box isDone-${isDone} isEditing-${isEditing}" id="taskId-${i}">
                 <div class="task-left">
                     <div class="task-title"><h3>${tasksArr[i].title}</h3></div>
                     <div class="task-content" contenteditable="${tasksArr[i].isEdit}"><p>${tasksArr[i].newTask}</p></div>
@@ -210,18 +226,18 @@ function editTask(index) {
         drawTask(tasksArr);
         alert("Saved!");
     }    
+
     saveTasks();
     drawTask(tasksArr);
-
 }
 
 function validate() {
-    if (!titleBox.value) {
+    if (!titleBox.value || !titleBox.value.trim().length) {
         alert("Missing Task");
         titleBox.focus();
         return false;
     }
-    if(!newTaskBox.value) {
+    if(!newTaskBox || !newTaskBox.value.trim().length) {
         alert("Missing Task");
         newTaskBox.focus();
         return false;
@@ -235,9 +251,7 @@ function saveTasks() {
 }
 
 function completeTask(Id) {
-    const taskId = document.getElementById(`taskId-${Id}`);
     tasksArr[Id].isDone = !tasksArr[Id].isDone;
-    console.log(tasksArr[Id])
     saveTasks();
     drawTask(tasksArr);
 }
@@ -252,7 +266,7 @@ function deleteTask(index) {
     saveTasks();
 }
 
-// ================================== MINI CALENDAR ==================================
+// ================================== MINI CALENDAR ( GPT HELPED TO ADD THIS ) ==================================
 
 function toggleDateInput() {
     const calendar = document.getElementById('calendar');

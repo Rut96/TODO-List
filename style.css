@@ -12,13 +12,13 @@
 
 @font-face {
     font-family: "Veshion";
-    src: url("/assets/fonts/Al_Veshion_PersonalUseOnly.ttf");
+    src: url("assets/fonts/Al_Veshion_PersonalUseOnly.ttf");
 }
 
 body {
     font-family: "Veshion", "Montserrat", sans-serif;
     line-height: 1.6;
-    background-image: url(/assets/images/leaf-back.avif);
+    background-image: url(assets/images/leaf-back.avif);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -148,8 +148,13 @@ main {
     width: 100%;
     height: auto;
     min-height: 200px;
+    max-height: 250px;
     padding: 15px;
     box-sizing: border-box;
+
+    border: 3px solid transparent;
+    box-shadow: none;
+    transition: all 0.3s ease-in-out;
 
 }
 
@@ -160,6 +165,12 @@ main {
 .isDone-false {
     background-color: var(--primary-light);
 }
+
+.isEditing-true {
+    border-color: #FFD700; /* Gold border for editing state */
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5); /* Subtle gold glow */
+}
+
 
 .task-left {
     display: flex;
