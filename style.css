@@ -12,13 +12,13 @@
 
 @font-face {
     font-family: "Veshion";
-    src: url("assets/fonts/Al_Veshion_PersonalUseOnly.ttf");
+    src: url("./assets/fonts/Al_Veshion_PersonalUseOnly.ttf");
 }
 
 body {
     font-family: "Veshion", "Montserrat", sans-serif;
     line-height: 1.6;
-    background-image: url(assets/images/leaf-back.avif);
+    background-image: url(./assets/images/leaf-back.avif);
     background-size: cover;
     background-repeat: no-repeat;
     background-attachment: fixed;
